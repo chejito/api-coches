@@ -18,11 +18,11 @@ url indicando el tipo de coche que quiere recibir.<br>
   * En caso de no existir el tipo de coche indicado en la url de la petición, el Factory
   Method lanzará una excepción, que el controlador capturará y registrará en los
   logs, enviando al cliente una respuesta de tipo not found "404"
-  * También se ha de incluir métodos para la creación, modificación y borrado de los
-  coches, es decir, realizar los métodos CRUD para el controlador de coches.
-  * Crear una colección en postman y comprobar que se recuperan los datos
-  correctamente. 
-  * Crear filtros para buscar por color, número de puertas, nombre del
-  coche y tipo de coche. 
-  * Exportar la colección y cargarla en el directorio raíz del
-  proyecto.
+* También se ha de incluir métodos para la creación, modificación y borrado de los
+coches, es decir, realizar los métodos CRUD para el controlador de coches.
+* Crear una colección en postman y comprobar que se recuperan los datos
+correctamente. 
+* Crear filtros para buscar por color, número de puertas, nombre del
+coche y tipo de coche. 
+* Exportar la colección y cargarla en el directorio raíz del
+proyecto.
