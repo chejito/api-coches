@@ -1,20 +1,68 @@
 package es.sergiomendez.apicoches.entities;
 
+import javax.persistence.*;
+
+@MappedSuperclass
 public abstract class Car {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
+
+    @Column
     String name;
+
+    @Column
     String brand;
+
+    @Column
     String model;
+
+    @Column
     String color;
+
+    @Column
     Integer doors;
+
+    @Column
     String battery;
+
+    @Column
     String engine;
+
+    @Column
     String airConditioner;
+
+    @Column
     Boolean engineOn;
+
+    @Column
     Boolean batteryOn;
+
+    @Column
     Boolean airConditionerOn;
 
-    public Car(String brand, String model, String color, Integer doors, String battery, String engine, String airConditioner) {
+    public Car() {
+    }
+
+    public Car(String brand, String model, String color, Integer doors,
+               String battery, String engine, String airConditioner) {
+        this.name = brand + " " + model;
+        this.brand = brand;
+        this.model = model;
+        this.color = color;
+        this.doors = doors;
+        this.battery = battery;
+        this.engine = engine;
+        this.airConditioner = airConditioner;
+        this.engineOn = false;
+        this.batteryOn = false;
+        this.airConditionerOn = false;
+    }
+
+    public Car(Long id, String brand, String model, String color, Integer doors,
+               String battery, String engine, String airConditioner) {
+        this.id = id;
         this.name = brand + " " + model;
         this.brand = brand;
         this.model = model;
@@ -32,6 +80,14 @@ public abstract class Car {
     public abstract void startEngine();
     public void startAirConditioner() {
         setAirConditionerOn(true);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

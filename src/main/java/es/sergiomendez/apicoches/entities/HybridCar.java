@@ -1,8 +1,18 @@
 package es.sergiomendez.apicoches.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class HybridCar extends Car {
 
+    @Column
     String engine2;
+
+    @Column
     Boolean engine2On;
 
     public HybridCar(String brand, String model, String color, Integer doors, String battery, String engine, String airConditioner, String engine2) {

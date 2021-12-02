@@ -1,8 +1,19 @@
 package es.sergiomendez.apicoches.entities;
 
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class ElectricCar extends Car {
 
+    @Column
     String engineBatteries;
+
+    @Column
     Boolean engineBatteriesOn;
 
     public ElectricCar(String brand, String model, String color, Integer doors, String battery, String engine, String airConditioner, String engineBatteries) {

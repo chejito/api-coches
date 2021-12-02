@@ -1,8 +1,18 @@
 package es.sergiomendez.apicoches.entities;
 
-public class CombustionCar extends Car{
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class CombustionCar extends Car {
+
+    @Column
     String gasTank;
+
+    @Column
     Boolean gasTankEmpty;
 
     public CombustionCar(String brand, String model, String color, Integer doors, String battery,
