@@ -1,4 +1,4 @@
-package es.sergiomendez.apicoches.entities;
+package es.sergiomendez.apicoches.entities.cars;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,13 +23,19 @@ public class HybridCar extends Car {
 
     @Override
     public void startBattery() {
-        setBatteryOn(true);
+        if (!getBatteryOn()) {
+            setBatteryOn(true);
+        }
     }
 
     @Override
     public void startEngine() {
-        setEngineOn(true);
-        setEngine2On(true);
+        if (!getEngineOn()) {
+            setEngineOn(true);
+        }
+        if (!getEngine2On()) {
+            setEngine2On(true);
+        }
     }
 
     public String getEngine2() {

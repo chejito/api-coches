@@ -1,8 +1,8 @@
 package es.sergiomendez.apicoches.services;
 
-import es.sergiomendez.apicoches.entities.Car;
-import es.sergiomendez.apicoches.entities.ElectricCar;
-import es.sergiomendez.apicoches.entities.HybridCar;
+import es.sergiomendez.apicoches.entities.cars.Car;
+import es.sergiomendez.apicoches.entities.cars.ElectricCar;
+import es.sergiomendez.apicoches.entities.cars.HybridCar;
 import es.sergiomendez.apicoches.repositories.CarRepository;
 
 import java.util.ArrayList;

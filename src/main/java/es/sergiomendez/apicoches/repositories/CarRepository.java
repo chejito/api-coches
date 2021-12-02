@@ -1,6 +1,6 @@
 package es.sergiomendez.apicoches.repositories;
 
-import es.sergiomendez.apicoches.entities.Car;
+import es.sergiomendez.apicoches.entities.cars.Car;
 import es.sergiomendez.apicoches.exceptions.CarNotFoundException;
 
 import java.util.ArrayList;

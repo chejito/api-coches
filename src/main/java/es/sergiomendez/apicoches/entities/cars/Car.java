@@ -1,4 +1,4 @@
-package es.sergiomendez.apicoches.entities;
+package es.sergiomendez.apicoches.entities.cars;
 
 import javax.persistence.*;
 

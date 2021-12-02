@@ -1,4 +1,4 @@
-package es.sergiomendez.apicoches.entities;
+package es.sergiomendez.apicoches.entities.cars;
 
 
 import javax.persistence.Column;
@@ -24,13 +24,19 @@ public class ElectricCar extends Car {
 
     @Override
     public void startBattery() {
-        setBatteryOn(true);
-        setEngineBatteriesOn(true);
+        if (!getBatteryOn()) {
+            setBatteryOn(true);
+        }
+        if (!getEngineBatteriesOn()) {
+            setEngineBatteriesOn(true);
+        }
     }
 
     @Override
     public void startEngine() {
-        setEngineOn(true);
+        if (!getEngineOn()) {
+            setEngineOn(true);
+        }
     }
 
     public String getEngineBatteries() {

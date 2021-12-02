@@ -1,4 +1,4 @@
-package es.sergiomendez.apicoches.entities;
+package es.sergiomendez.apicoches.entities.cars;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,17 +23,23 @@ public class CombustionCar extends Car {
     }
 
     void fillTank() {
-
+        if (gasTankEmpty) {
+            setGasTankEmpty(false);
+        }
     }
 
     @Override
     public void startBattery() {
-        setBatteryOn(true);
+        if (!getBatteryOn()) {
+            setBatteryOn(true);
+        }
     }
 
     @Override
     public void startEngine() {
-        setEngineOn(true);
+        if (!getEngineOn()) {
+            setEngineOn(true);
+        }
     }
 
 
