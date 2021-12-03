@@ -4,6 +4,7 @@ import es.sergiomendez.apicoches.entities.airconditioners.AirConditioner;
 import es.sergiomendez.apicoches.entities.airconditioners.AirConditionerBuilder;
 import es.sergiomendez.apicoches.entities.airconditioners.HVAC;
 import es.sergiomendez.apicoches.entities.airconditioners.HVACBuilder;
+import es.sergiomendez.apicoches.exceptions.AirConditionerNotFoundException;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -24,7 +25,7 @@ public class AirConditionerFactory {
         }
     }
 
-    public AirConditionerFactory(AirConditioner newAirConditioner) {
+    public AirConditionerFactory(AirConditioner newAirConditioner) throws AirConditionerNotFoundException {
         if (newAirConditioner instanceof HVAC) {
             this.airConditioner = new HVACBuilder("Climatizador por defecto")
                     .addPower(newAirConditioner.getPower())
@@ -34,7 +35,7 @@ public class AirConditionerFactory {
                     .addPower(newAirConditioner.getPower())
                     .build();
         } else {
-            this.airConditioner = null;
+            throw new AirConditionerNotFoundException();
         }
     }
 

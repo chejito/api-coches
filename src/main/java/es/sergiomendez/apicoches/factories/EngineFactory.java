@@ -1,6 +1,7 @@
 package es.sergiomendez.apicoches.factories;
 
 import es.sergiomendez.apicoches.entities.engines.*;
+import es.sergiomendez.apicoches.exceptions.EngineNotFoundException;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -9,7 +10,7 @@ public class EngineFactory {
 
     private EngineFactory() {}
 
-    public EngineFactory(String type) {
+    public EngineFactory(String type) throws EngineNotFoundException {
 
         switch (type) {
             case "electric", "eléctrico", "electrico" -> this.engine = new ElectricEngineBuilder("Motor eléctrico por defecto")
@@ -21,11 +22,11 @@ public class EngineFactory {
                     .addFuelType("gasolina")
                     .addCc(1400)
                     .build();
-            default -> this.engine = null;
+            default -> throw new EngineNotFoundException();
         }
     }
 
-    public EngineFactory(Engine newEngine) {
+    public EngineFactory(Engine newEngine) throws EngineNotFoundException {
 
         if (newEngine instanceof ElectricEngine) {
             this.engine = new ElectricEngineBuilder(newEngine.getName())
@@ -39,7 +40,7 @@ public class EngineFactory {
                     .addCc(((CombustionEngine) newEngine).getCc())
                     .build();
         } else {
-            this.engine = null;
+            throw new EngineNotFoundException();
         }
     }
 
