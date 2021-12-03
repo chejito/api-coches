@@ -1,10 +1,5 @@
 package es.sergiomendez.apicoches;
 
-import es.sergiomendez.apicoches.entities.cars.Car;
-import es.sergiomendez.apicoches.entities.cars.CombustionCar;
-import es.sergiomendez.apicoches.entities.cars.ElectricCar;
-import es.sergiomendez.apicoches.entities.cars.HybridCar;
-import es.sergiomendez.apicoches.services.CarService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

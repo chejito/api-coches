@@ -1,16 +1,11 @@
 package es.sergiomendez.apicoches.entities.engines;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Table(name="electric_engines")
 public class ElectricEngine extends Engine {
-
-    @Column
-    Integer capacity;
 
     @Column
     Integer power;
@@ -18,34 +13,22 @@ public class ElectricEngine extends Engine {
     public ElectricEngine() {
     }
 
-    public ElectricEngine(String brand, String model, Boolean isOn,
-                          Integer capacity, Integer power) {
-        super(brand, model, isOn);
-        this.capacity = capacity;
+    public ElectricEngine(String name, Integer hp, Integer power) {
+        super(name, hp);
         this.power = power;
     }
 
-    public ElectricEngine(Long id, String brand, String model, Boolean isOn,
-                          Integer capacity, Integer power) {
-        super(id, brand, model, isOn);
-        this.capacity = capacity;
+    public ElectricEngine(Long id, String name, Integer hp, Integer power) {
+        super(id, name, hp);
         this.power = power;
-    }
-
-    @Override
-    public void start() {
-        if(!getOn()) {
-            setOn(true);
-        }
     }
 
     @Override
     public String toString() {
         return "ElectricEngine{" +
-                "name='" + name + '\'' +
-                ", brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", capacity=" + capacity +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", hp=" + hp +
                 ", power=" + power +
                 ", isOn=" + isOn +
                 '}';

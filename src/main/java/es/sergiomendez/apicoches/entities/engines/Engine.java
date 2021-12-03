@@ -13,10 +13,7 @@ public abstract class Engine {
     String name;
 
     @Column
-    String brand;
-
-    @Column
-    String model;
+    Integer hp;
 
     @Column
     Boolean isOn;
@@ -24,22 +21,30 @@ public abstract class Engine {
     public Engine() {
     }
 
-    public Engine(String brand, String model, Boolean isOn) {
-        this.name = brand + " " + model;
-        this.brand = brand;
-        this.model = model;
-        this.isOn = isOn;
+    public Engine(String name, Integer hp) {
+        this.name = name;
+        this.hp = hp;
+        this.isOn = false;
     }
 
-    public Engine(Long id, String brand, String model, Boolean isOn) {
-        this.name = brand + " " + model;
+    public Engine(Long id, String name, Integer hp) {
         this.id = id;
-        this.brand = brand;
-        this.model = model;
-        this.isOn = isOn;
+        this.name = name;
+        this.hp = hp;
+        this.isOn = false;
     }
 
-    public abstract void start();
+    public void start() {
+        if(!getOn()) {
+            setOn(true);
+        }
+    }
+
+    public void stop() {
+        if(getOn()) {
+            setOn(false);
+        }
+    }
 
     public Long getId() {
         return id;
@@ -57,20 +62,12 @@ public abstract class Engine {
         this.name = name;
     }
 
-    public String getBrand() {
-        return brand;
+    public Integer getHp() {
+        return hp;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
+    public void setHp(Integer hp) {
+        this.hp = hp;
     }
 
     public Boolean getOn() {
