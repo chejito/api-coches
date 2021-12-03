@@ -1,26 +1,12 @@
 package es.sergiomendez.apicoches.entities.cars;
 
-
-import es.sergiomendez.apicoches.entities.engines.CombustionEngine;
 import es.sergiomendez.apicoches.entities.engines.ElectricEngine;
 
-import javax.persistence.*;
-
-@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@Table(name="electric_cars")
 public class ElectricCar extends Car {
 
-    @Column
     ElectricEngine engine;
-
-    @Column
     String engineBatteries;
-
-    @Column
     Boolean engineOn;
-
-    @Column
     Boolean engineBatteriesOn;
 
     public ElectricCar() {}

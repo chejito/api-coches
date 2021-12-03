@@ -3,23 +3,11 @@ package es.sergiomendez.apicoches.entities.cars;
 import es.sergiomendez.apicoches.entities.engines.CombustionEngine;
 import es.sergiomendez.apicoches.entities.engines.ElectricEngine;
 
-import javax.persistence.*;
-
-@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@Table(name="hybrid_cars")
 public class HybridCar extends Car {
 
-    @Column
     CombustionEngine engine;
-
-    @Column
     ElectricEngine engine2;
-
-    @Column
     Boolean engineOn;
-
-    @Column
     Boolean engine2On;
 
     public HybridCar() {}

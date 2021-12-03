@@ -2,23 +2,11 @@ package es.sergiomendez.apicoches.entities.cars;
 
 import es.sergiomendez.apicoches.entities.engines.CombustionEngine;
 
-import javax.persistence.*;
-
-@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@Table(name="combustion_cars")
 public class CombustionCar extends Car {
 
-    @Column
     CombustionEngine engine;
-
-    @Column
     String gasTank;
-
-    @Column
     Boolean engineOn;
-
-    @Column
     Boolean gasTankEmpty;
 
     public CombustionCar() {}

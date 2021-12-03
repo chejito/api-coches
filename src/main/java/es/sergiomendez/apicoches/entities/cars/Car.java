@@ -1,35 +1,14 @@
 package es.sergiomendez.apicoches.entities.cars;
 
-import es.sergiomendez.apicoches.entities.engines.Engine;
-
-import javax.persistence.*;
-
-@MappedSuperclass
 public abstract class Car {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-
-    @Column
     String name;
-
-    @Column
     String color;
-
-    @Column
     Integer doors;
-
-    @Column
     String battery;
-
-    @Column
     String airConditioner;
-
-    @Column
     Boolean batteryOn;
-
-    @Column
     Boolean airConditionerOn;
 
     public Car() {

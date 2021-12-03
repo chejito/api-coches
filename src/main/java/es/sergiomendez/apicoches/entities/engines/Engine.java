@@ -1,22 +1,11 @@
 package es.sergiomendez.apicoches.entities.engines;
 
-import javax.persistence.*;
 
-@MappedSuperclass
 public abstract class Engine {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-
-    @Column
-    String name;
-
-    @Column
-    Integer hp;
-
-    @Column
-    Boolean isOn;
+    protected String name;
+    protected Integer hp;
+    protected Boolean isOn = false;
 
     public Engine() {
     }
@@ -24,14 +13,6 @@ public abstract class Engine {
     public Engine(String name, Integer hp) {
         this.name = name;
         this.hp = hp;
-        this.isOn = false;
-    }
-
-    public Engine(Long id, String name, Integer hp) {
-        this.id = id;
-        this.name = name;
-        this.hp = hp;
-        this.isOn = false;
     }
 
     public void start() {
@@ -44,14 +25,6 @@ public abstract class Engine {
         if(getOn()) {
             setOn(false);
         }
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
