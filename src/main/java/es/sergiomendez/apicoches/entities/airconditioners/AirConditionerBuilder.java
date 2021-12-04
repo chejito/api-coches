@@ -1,6 +1,7 @@
 package es.sergiomendez.apicoches.entities.airconditioners;
 
 public class AirConditionerBuilder {
+
     private AirConditioner airConditioner;
 
     public AirConditionerBuilder() {}

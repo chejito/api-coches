@@ -7,8 +7,7 @@ public abstract class Engine {
     protected Integer hp;
     protected Boolean isOn = false;
 
-    public Engine() {
-    }
+    public Engine() {}
 
     public Engine(String name, Integer hp) {
         this.name = name;

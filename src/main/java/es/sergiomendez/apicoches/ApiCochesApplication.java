@@ -4,6 +4,7 @@ import es.sergiomendez.apicoches.entities.airconditioners.AirConditioner;
 import es.sergiomendez.apicoches.entities.airconditioners.HVAC;
 import es.sergiomendez.apicoches.entities.engines.CombustionEngine;
 import es.sergiomendez.apicoches.entities.engines.ElectricEngine;
+import es.sergiomendez.apicoches.entities.engines.Engine;
 import es.sergiomendez.apicoches.facades.EngineFacade;
 import es.sergiomendez.apicoches.factories.AirConditionerFactory;
 import org.springframework.boot.SpringApplication;
@@ -17,24 +18,24 @@ public class ApiCochesApplication {
 
 		EngineFacade engineFacade = new EngineFacade();
 
-		ElectricEngine electricEngine = null;
-		CombustionEngine combustionEngine = null;
-		CombustionEngine combustionEngine2 = null;
+		Engine electricEngine = null;
+		Engine combustionEngine = null;
+		Engine combustionEngine2 = null;
 
 		try {
-			 electricEngine = (ElectricEngine) engineFacade.createEngine("electrico");
+			 electricEngine = engineFacade.createEngine("electrico");
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
 
 		try {
-			 combustionEngine = (CombustionEngine) engineFacade.createEngine("combustion");
+			 combustionEngine = engineFacade.createEngine("combustion");
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
 
 		try {
-			combustionEngine2 = (CombustionEngine) engineFacade.createEngine("feo");
+			combustionEngine2 = engineFacade.createEngine("feo");
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
