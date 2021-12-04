@@ -10,7 +10,9 @@ public class ElectricCar extends Car {
     private EngineBattery engineBattery;
     private Boolean isEngineBatteryOn;
 
-    public ElectricCar() {}
+    public ElectricCar() {
+        this.isEngineBatteryOn = false;
+    }
 
     public ElectricCar(String name, String color, Integer doors, Battery battery, Engine engine,
                        AirConditioner airConditioner, EngineBattery engineBattery) {
@@ -22,9 +24,11 @@ public class ElectricCar extends Car {
     @Override
     public void startBattery() {
         if (!getBatteryOn()) {
+            battery.start();
             setBatteryOn(true);
         }
         if (!getEngineBatteryOn()) {
+            engineBattery.start();
             setEngineBatteryOn(true);
         }
     }

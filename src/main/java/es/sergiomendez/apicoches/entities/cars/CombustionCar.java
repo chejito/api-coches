@@ -9,7 +9,9 @@ public class CombustionCar extends Car {
     protected String gasTank;
     protected Boolean isGasTankEmpty;
 
-    public CombustionCar() {}
+    public CombustionCar() {
+        this.isGasTankEmpty = true;
+    }
 
     public CombustionCar(String name, String color, Integer doors, Battery battery, Engine engine,
                          AirConditioner airConditioner, String gasTank) {

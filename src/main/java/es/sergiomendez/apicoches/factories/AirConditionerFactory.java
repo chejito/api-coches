@@ -4,7 +4,6 @@ import es.sergiomendez.apicoches.entities.airconditioners.AirConditioner;
 import es.sergiomendez.apicoches.entities.airconditioners.AirConditionerBuilder;
 import es.sergiomendez.apicoches.entities.airconditioners.HVAC;
 import es.sergiomendez.apicoches.entities.airconditioners.HVACBuilder;
-import es.sergiomendez.apicoches.exceptions.AirConditionerNotFoundException;
 import es.sergiomendez.apicoches.exceptions.AirConditionerTypeNotFoundException;
 import es.sergiomendez.apicoches.exceptions.NullAirConditionerException;
 import org.springframework.stereotype.Component;

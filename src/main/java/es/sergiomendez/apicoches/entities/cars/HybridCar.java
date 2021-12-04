@@ -10,7 +10,9 @@ public class HybridCar extends CombustionCar {
     private ElectricEngine engine2;
     private Boolean isEngine2On;
 
-    public HybridCar() {}
+    public HybridCar() {
+        this.isEngine2On = false;
+    }
 
     public HybridCar(String name, String color, Integer doors, Battery battery, Engine engine,
                      AirConditioner airConditioner, String gasTank, ElectricEngine engine2) {
@@ -21,10 +23,12 @@ public class HybridCar extends CombustionCar {
 
     @Override
     public void startEngine() {
-        if (!getEngineOn()) {
+        if (!engine.getOn()) {
+            engine.start();
             setEngineOn(true);
         }
         if (!getEngine2On()) {
+            engine2.start();
             setEngine2On(true);
         }
     }
@@ -71,6 +75,7 @@ public class HybridCar extends CombustionCar {
                 ", isEngineOn=" + isEngineOn +
                 ", isEngine2On=" + isEngine2On +
                 ", isAirConditionerOn=" + isAirConditionerOn +
+                ", isGasTankEmpty=" + isGasTankEmpty +
                 '}';
     }
 }

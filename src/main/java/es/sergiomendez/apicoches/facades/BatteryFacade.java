@@ -1,7 +1,6 @@
 package es.sergiomendez.apicoches.facades;
 
 import es.sergiomendez.apicoches.entities.batteries.Battery;
-import es.sergiomendez.apicoches.exceptions.BatteryNotFoundException;
 import es.sergiomendez.apicoches.exceptions.BatteryTypeNotFoundException;
 import es.sergiomendez.apicoches.exceptions.NullBatteryException;
 import es.sergiomendez.apicoches.factories.BatteryFactory;

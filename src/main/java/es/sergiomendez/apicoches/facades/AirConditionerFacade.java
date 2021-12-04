@@ -1,7 +1,6 @@
 package es.sergiomendez.apicoches.facades;
 
 import es.sergiomendez.apicoches.entities.airconditioners.AirConditioner;
-import es.sergiomendez.apicoches.exceptions.AirConditionerNotFoundException;
 import es.sergiomendez.apicoches.exceptions.AirConditionerTypeNotFoundException;
 import es.sergiomendez.apicoches.exceptions.NullAirConditionerException;
 import es.sergiomendez.apicoches.factories.AirConditionerFactory;

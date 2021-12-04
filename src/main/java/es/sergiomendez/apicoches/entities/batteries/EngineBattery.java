@@ -50,6 +50,7 @@ public class EngineBattery extends Battery {
                 ", reach=" + reach +
                 ", type='" + type + '\'' +
                 ", chargeCycles=" + chargeCycles +
+                ", isOn=" + isOn +
                 '}';
     }
 }

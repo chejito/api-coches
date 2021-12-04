@@ -16,7 +16,11 @@ public abstract class Car {
     protected Boolean isEngineOn;
     protected Boolean isAirConditionerOn;
 
-    public Car() {}
+    public Car() {
+        this.isBatteryOn = false;
+        this.isEngineOn = false;
+        this.isAirConditionerOn = false;
+    }
 
     public Car(String name, String color, Integer doors, Battery battery,
                Engine engine, AirConditioner airConditioner) {
@@ -47,24 +51,28 @@ public abstract class Car {
 
     public void startBattery() {
         if (!getBatteryOn()) {
+            battery.start();
             setBatteryOn(true);
         }
     }
 
     public void stopBattery() {
         if (getBatteryOn()) {
+            battery.stop();
             setBatteryOn(false);
         }
     }
 
     public void startAirConditioner() {
         if (!getAirConditionerOn()) {
+            airConditioner.start();
             setAirConditionerOn(true);
         }
     }
 
     public void stopAirConditioner() {
         if (getAirConditionerOn()) {
+            airConditioner.stop();
             setAirConditionerOn(false);
         }
     }

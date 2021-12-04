@@ -80,6 +80,7 @@ public class Battery {
                 ", volts=" + volts +
                 ", ah=" + ah +
                 ", isStartStopCompatible=" + isStartStopCompatible +
+                ", isOn=" + isOn +
                 '}';
     }
 }

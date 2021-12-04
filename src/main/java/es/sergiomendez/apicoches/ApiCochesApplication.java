@@ -2,18 +2,17 @@ package es.sergiomendez.apicoches;
 
 import es.sergiomendez.apicoches.controllers.AirConditionerController;
 import es.sergiomendez.apicoches.controllers.BatteryController;
+import es.sergiomendez.apicoches.controllers.CarController;
+import es.sergiomendez.apicoches.controllers.EngineController;
 import es.sergiomendez.apicoches.entities.airconditioners.AirConditioner;
 import es.sergiomendez.apicoches.entities.batteries.Battery;
+import es.sergiomendez.apicoches.entities.cars.Car;
 import es.sergiomendez.apicoches.entities.engines.Engine;
-import es.sergiomendez.apicoches.facades.AirConditionerFacade;
-import es.sergiomendez.apicoches.facades.BatteryFacade;
-import es.sergiomendez.apicoches.controllers.EngineController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 @SpringBootApplication
 public class ApiCochesApplication {
@@ -24,6 +23,7 @@ public class ApiCochesApplication {
 		EngineController engineController = context.getBean(EngineController.class);
 		BatteryController batteryController = context.getBean(BatteryController.class);
 		AirConditionerController airConditionerController = context.getBean(AirConditionerController.class);
+		CarController carController = context.getBean(CarController.class);
 
 		// Creación de Motores
 		ArrayList<Engine> engines = engineController.createEngines("electrico", "combustion", "feo");
@@ -35,6 +35,9 @@ public class ApiCochesApplication {
 		// Creación de Baterías
 		ArrayList<Battery> batteries = batteryController.createBatteries("normal", "motriz", "azul");
 
+		// Creación de Motores
+		ArrayList<Car> cars = carController.createCars("electrico", "combustion", "hibrido", "vapor");
+
 		// Muestra Motores, Aires Acondicionados y Baterías creadas.
 
 		System.out.println("""
@@ -44,6 +47,7 @@ public class ApiCochesApplication {
 		for (Engine engine : engines) {
 			System.out.println(engine);
 		}
+
 		System.out.println("""
 
 				Aires Acondicionados
@@ -51,12 +55,21 @@ public class ApiCochesApplication {
 		for (AirConditioner airConditioner : airConditioners) {
 			System.out.println(airConditioner);
 		}
+
 		System.out.println("""
 
 				Baterías
 				---------------------""");
 		for (Battery battery : batteries) {
 			System.out.println(battery);
+		}
+
+		System.out.println("""
+
+				Coches
+				---------------------""");
+		for (Car car : cars) {
+			System.out.println(car);
 		}
 
 
