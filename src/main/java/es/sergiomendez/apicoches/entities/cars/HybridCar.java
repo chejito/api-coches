@@ -1,40 +1,22 @@
 package es.sergiomendez.apicoches.entities.cars;
 
-import es.sergiomendez.apicoches.entities.engines.CombustionEngine;
+import es.sergiomendez.apicoches.entities.airconditioners.AirConditioner;
+import es.sergiomendez.apicoches.entities.batteries.Battery;
 import es.sergiomendez.apicoches.entities.engines.ElectricEngine;
+import es.sergiomendez.apicoches.entities.engines.Engine;
 
-public class HybridCar extends Car {
+public class HybridCar extends CombustionCar {
 
-    CombustionEngine engine;
-    ElectricEngine engine2;
-    Boolean engineOn;
-    Boolean engine2On;
+    private ElectricEngine engine2;
+    private Boolean isEngine2On;
 
     public HybridCar() {}
 
-    public HybridCar(String name, String color, Integer doors, String battery, String airConditioner,
-                     CombustionEngine engine, ElectricEngine engine2) {
-        super(name, color, doors, battery, airConditioner);
-        this.engine = engine;
+    public HybridCar(String name, String color, Integer doors, Battery battery, Engine engine,
+                     AirConditioner airConditioner, String gasTank, ElectricEngine engine2) {
+        super(name, color, doors, battery, engine, airConditioner, gasTank);
         this.engine2 = engine2;
-        this.engineOn = engine.getOn();
-        this.engine2On = engine.getOn();
-    }
-
-    public HybridCar(Long id, String name, String color, Integer doors, String battery, String airConditioner,
-                     CombustionEngine engine, ElectricEngine engine2) {
-        super(id, name, color, doors, battery, airConditioner);
-        this.engine = engine;
-        this.engine2 = engine2;
-        this.engineOn = engine.getOn();
-        this.engine2On = engine.getOn();
-    }
-
-    @Override
-    public void startBattery() {
-        if (!getBatteryOn()) {
-            setBatteryOn(true);
-        }
+        this.isEngine2On = false;
     }
 
     @Override
@@ -59,14 +41,6 @@ public class HybridCar extends Car {
         }
     }
 
-    public CombustionEngine getEngine() {
-        return engine;
-    }
-
-    public void setEngine(CombustionEngine engine) {
-        this.engine = engine;
-    }
-
     public ElectricEngine getEngine2() {
         return engine2;
     }
@@ -75,21 +49,28 @@ public class HybridCar extends Car {
         this.engine2 = engine2;
     }
 
-    @Override
-    public Boolean getEngineOn() {
-        return engineOn;
-    }
-
-    @Override
-    public void setEngineOn(Boolean engineOn) {
-        this.engineOn = engineOn;
-    }
-
     public Boolean getEngine2On() {
-        return engine2On;
+        return isEngine2On;
     }
 
     public void setEngine2On(Boolean engine2On) {
-        this.engine2On = engine2On;
+        isEngine2On = engine2On;
+    }
+
+    @Override
+    public String toString() {
+        return "HybridCar{" +
+                "name='" + name + '\'' +
+                ", color='" + color + '\'' +
+                ", doors=" + doors +
+                ", battery=" + battery +
+                ", engine=" + engine +
+                ", engine2=" + engine2 +
+                ", airConditioner=" + airConditioner +
+                ", isBatteryOn=" + isBatteryOn +
+                ", isEngineOn=" + isEngineOn +
+                ", isEngine2On=" + isEngine2On +
+                ", isAirConditionerOn=" + isAirConditionerOn +
+                '}';
     }
 }

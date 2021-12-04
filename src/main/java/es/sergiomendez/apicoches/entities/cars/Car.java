@@ -1,41 +1,49 @@
 package es.sergiomendez.apicoches.entities.cars;
 
+import es.sergiomendez.apicoches.entities.airconditioners.AirConditioner;
+import es.sergiomendez.apicoches.entities.batteries.Battery;
+import es.sergiomendez.apicoches.entities.engines.Engine;
+
 public abstract class Car {
 
-    Long id;
-    String name;
-    String color;
-    Integer doors;
-    String battery;
-    String airConditioner;
-    Boolean batteryOn;
-    Boolean airConditionerOn;
+    protected String name;
+    protected String color;
+    protected Integer doors;
+    protected Battery battery;
+    protected Engine engine;
+    protected AirConditioner airConditioner;
+    protected Boolean isBatteryOn;
+    protected Boolean isEngineOn;
+    protected Boolean isAirConditionerOn;
 
-    public Car() {
-    }
+    public Car() {}
 
-    public Car(String name, String color, Integer doors, String battery, String airConditioner) {
+    public Car(String name, String color, Integer doors, Battery battery,
+               Engine engine, AirConditioner airConditioner) {
         this.name = name;
         this.color = color;
         this.doors = doors;
         this.battery = battery;
+        this.engine = engine;
         this.airConditioner = airConditioner;
-        this.batteryOn = false;
-        this.airConditionerOn = false;
+        this.isBatteryOn = false;
+        this.isEngineOn = false;
+        this.isAirConditionerOn = false;
     }
 
-    public Car(Long id, String name, String color, Integer doors, String battery, String airConditioner) {
-        this.id = id;
-        this.name = name;
-        this.color = color;
-        this.doors = doors;
-        this.batteryOn = false;
-        this.airConditionerOn = false;
+    public void startEngine() {
+        if (!engine.getOn()) {
+            engine.start();
+            setEngineOn(true);
+        }
     }
 
-    public abstract void startEngine();
-
-    public abstract void stopEngine();
+    public void stopEngine() {
+        if (engine.getOn()) {
+            engine.stop();
+            setEngineOn(false);
+        }
+    }
 
     public void startBattery() {
         if (!getBatteryOn()) {
@@ -59,14 +67,6 @@ public abstract class Car {
         if (getAirConditionerOn()) {
             setAirConditionerOn(false);
         }
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -93,39 +93,51 @@ public abstract class Car {
         this.doors = doors;
     }
 
-    public String getBattery() {
+    public Battery getBattery() {
         return battery;
     }
 
-    public void setBattery(String battery) {
+    public void setBattery(Battery battery) {
         this.battery = battery;
     }
 
-    public String getAirConditioner() {
+    public Engine getEngine() {
+        return engine;
+    }
+
+    public void setEngine(Engine engine) {
+        this.engine = engine;
+    }
+
+    public AirConditioner getAirConditioner() {
         return airConditioner;
     }
 
-    public void setAirConditioner(String airConditioner) {
+    public void setAirConditioner(AirConditioner airConditioner) {
         this.airConditioner = airConditioner;
     }
 
-    public abstract Boolean getEngineOn();
-
-    public abstract void setEngineOn(Boolean engineOn);
-
     public Boolean getBatteryOn() {
-        return batteryOn;
+        return isBatteryOn;
     }
 
     public void setBatteryOn(Boolean batteryOn) {
-        this.batteryOn = batteryOn;
+        isBatteryOn = batteryOn;
+    }
+
+    public Boolean getEngineOn() {
+        return isEngineOn;
+    }
+
+    public void setEngineOn(Boolean engineOn) {
+        isEngineOn = engineOn;
     }
 
     public Boolean getAirConditionerOn() {
-        return airConditionerOn;
+        return isAirConditionerOn;
     }
 
     public void setAirConditionerOn(Boolean airConditionerOn) {
-        this.airConditionerOn = airConditionerOn;
+        isAirConditionerOn = airConditionerOn;
     }
 }

@@ -4,14 +4,19 @@ public class AirConditioner {
 
     protected String name;
     protected Integer power;
-    protected Boolean isOn = false;
-    protected Boolean isCooling = false;
+    protected Boolean isOn;
+    protected Boolean isCooling;
 
-    public AirConditioner() {}
+    public AirConditioner() {
+        this.isOn = false;
+        this.isCooling = false;
+    }
 
     public AirConditioner(String name, Integer power) {
         this.name = name;
         this.power = power;
+        this.isOn = false;
+        this.isCooling = false;
     }
 
     public void start() {

@@ -1,48 +1,22 @@
 package es.sergiomendez.apicoches.entities.cars;
 
-import es.sergiomendez.apicoches.entities.engines.ElectricEngine;
+import es.sergiomendez.apicoches.entities.airconditioners.AirConditioner;
+import es.sergiomendez.apicoches.entities.batteries.Battery;
+import es.sergiomendez.apicoches.entities.batteries.EngineBattery;
+import es.sergiomendez.apicoches.entities.engines.Engine;
 
 public class ElectricCar extends Car {
 
-    ElectricEngine engine;
-    String engineBatteries;
-    Boolean engineOn;
-    Boolean engineBatteriesOn;
+    private EngineBattery engineBattery;
+    private Boolean isEngineBatteryOn;
 
     public ElectricCar() {}
 
-    public ElectricCar(String name, String color, Integer doors, String battery, String airConditioner,
-                       ElectricEngine engine, String engineBatteries) {
-        super(name, color, doors, battery, airConditioner);
-        this.engine = engine;
-        this.engineBatteries = engineBatteries;
-        this.engineOn = getEngineOn();
-        this.engineBatteriesOn = false;
-    }
-
-    public ElectricCar(Long id, String name, String color, Integer doors, String battery, String airConditioner,
-                       ElectricEngine engine, String engineBatteries) {
-        super(id, name, color, doors, battery, airConditioner);
-        this.engine = engine;
-        this.engineBatteries = engineBatteries;
-        this.engineOn = getEngineOn();
-        this.engineBatteriesOn = false;
-    }
-
-    @Override
-    public void startEngine() {
-        if (!engine.getOn()) {
-            engine.start();
-            setEngineOn(true);
-        }
-    }
-
-    @Override
-    public void stopEngine() {
-        if (engine.getOn()) {
-            engine.stop();
-            setEngineOn(false);
-        }
+    public ElectricCar(String name, String color, Integer doors, Battery battery, Engine engine,
+                       AirConditioner airConditioner, EngineBattery engineBattery) {
+        super(name, color, doors, battery, engine, airConditioner);
+        this.engineBattery = engineBattery;
+        this.isEngineBatteryOn = false;
     }
 
     @Override
@@ -50,60 +24,41 @@ public class ElectricCar extends Car {
         if (!getBatteryOn()) {
             setBatteryOn(true);
         }
-        if (!getEngineBatteriesOn()) {
-            setEngineBatteriesOn(true);
+        if (!getEngineBatteryOn()) {
+            setEngineBatteryOn(true);
         }
     }
 
-    public ElectricEngine getEngine() {
-        return engine;
+    public EngineBattery getEngineBattery() {
+        return engineBattery;
     }
 
-    public void setEngine(ElectricEngine engine) {
-        this.engine = engine;
+    public void setEngineBattery(EngineBattery engineBattery) {
+        this.engineBattery = engineBattery;
     }
 
-    public String getEngineBatteries() {
-        return engineBatteries;
+    public Boolean getEngineBatteryOn() {
+        return isEngineBatteryOn;
     }
 
-    public void setEngineBatteries(String engineBatteries) {
-        this.engineBatteries = engineBatteries;
-    }
-
-    @Override
-    public Boolean getEngineOn() {
-        return engineOn;
-    }
-
-    @Override
-    public void setEngineOn(Boolean engineOn) {
-        this.engineOn = engineOn;
-    }
-
-    public Boolean getEngineBatteriesOn() {
-        return engineBatteriesOn;
-    }
-
-    public void setEngineBatteriesOn(Boolean engineBatteriesOn) {
-        this.engineBatteriesOn = engineBatteriesOn;
+    public void setEngineBatteryOn(Boolean engineBatteryOn) {
+        isEngineBatteryOn = engineBatteryOn;
     }
 
     @Override
     public String toString() {
         return "ElectricCar{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", color='" + color + '\'' +
                 ", doors=" + doors +
-                ", battery='" + battery + '\'' +
-                ", airConditioner='" + airConditioner + '\'' +
+                ", battery=" + battery +
+                ", engineBattery=" + engineBattery +
                 ", engine=" + engine +
-                ", engineBatteries='" + engineBatteries + '\'' +
-                ", batteryOn=" + batteryOn +
-                ", airConditionerOn=" + airConditionerOn +
-                ", engineOn=" + engineOn +
-                ", engineBatteriesOn=" + engineBatteriesOn +
+                ", airConditioner=" + airConditioner +
+                ", isBatteryOn=" + isBatteryOn +
+                ", isEngineBatteryOn=" + isEngineBatteryOn +
+                ", isEngineOn=" + isEngineOn +
+                ", isAirConditionerOn=" + isAirConditionerOn +
                 '}';
     }
 }

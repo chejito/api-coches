@@ -1,61 +1,27 @@
 package es.sergiomendez.apicoches.entities.cars;
 
-import es.sergiomendez.apicoches.entities.engines.CombustionEngine;
+import es.sergiomendez.apicoches.entities.airconditioners.AirConditioner;
+import es.sergiomendez.apicoches.entities.batteries.Battery;
+import es.sergiomendez.apicoches.entities.engines.Engine;
 
 public class CombustionCar extends Car {
 
-    CombustionEngine engine;
-    String gasTank;
-    Boolean engineOn;
-    Boolean gasTankEmpty;
+    protected String gasTank;
+    protected Boolean isGasTankEmpty;
 
     public CombustionCar() {}
 
-    public CombustionCar(String name, String color, Integer doors, String battery, String airConditioner,
-                         CombustionEngine engine, String gasTank) {
-        super(name, color, doors, battery, airConditioner);
-        this.engine = engine;
+    public CombustionCar(String name, String color, Integer doors, Battery battery, Engine engine,
+                         AirConditioner airConditioner, String gasTank) {
+        super(name, color, doors, battery, engine, airConditioner);
         this.gasTank = gasTank;
-        this.engineOn = engine.getOn();
-        this.gasTankEmpty = true;
+        this.isGasTankEmpty = true;
     }
 
-    public CombustionCar(Long id, String name, String color, Integer doors, String battery, String airConditioner,
-                         CombustionEngine engine, String gasTank) {
-        super(id, name, color, doors, battery, airConditioner);
-        this.engine = engine;
-        this.gasTank = gasTank;
-        this.engineOn = engine.getOn();
-        this.gasTankEmpty = true;
-    }
-
-    void fillTank() {
-        if (gasTankEmpty) {
+    public void fillTank() {
+        if (isGasTankEmpty) {
             setGasTankEmpty(false);
         }
-    }
-    @Override
-    public void startEngine() {
-        if (!engine.getOn()) {
-            engine.start();
-            setEngineOn(true);
-        }
-    }
-
-    @Override
-    public void stopEngine() {
-        if (engine.getOn()) {
-            engine.stop();
-            setEngineOn(false);
-        }
-    }
-
-    public CombustionEngine getEngine() {
-        return engine;
-    }
-
-    public void setEngine(CombustionEngine engine) {
-        this.engine = engine;
     }
 
     public String getGasTank() {
@@ -66,21 +32,28 @@ public class CombustionCar extends Car {
         this.gasTank = gasTank;
     }
 
-    @Override
-    public Boolean getEngineOn() {
-        return engineOn;
-    }
-
-    @Override
-    public void setEngineOn(Boolean engineOn) {
-        this.engineOn = engineOn;
-    }
-
     public Boolean getGasTankEmpty() {
-        return gasTankEmpty;
+        return isGasTankEmpty;
     }
 
     public void setGasTankEmpty(Boolean gasTankEmpty) {
-        this.gasTankEmpty = gasTankEmpty;
+        isGasTankEmpty = gasTankEmpty;
+    }
+
+    @Override
+    public String toString() {
+        return "CombustionCar{" +
+                "name='" + name + '\'' +
+                ", color='" + color + '\'' +
+                ", doors=" + doors +
+                ", battery=" + battery +
+                ", engine=" + engine +
+                ", airConditioner=" + airConditioner +
+                ", gasTank='" + gasTank + '\'' +
+                ", isBatteryOn=" + isBatteryOn +
+                ", isEngineOn=" + isEngineOn +
+                ", isAirConditionerOn=" + isAirConditionerOn +
+                ", isGasTankEmpty=" + isGasTankEmpty +
+                '}';
     }
 }

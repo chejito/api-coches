@@ -1,64 +1,64 @@
 package es.sergiomendez.apicoches;
 
+import es.sergiomendez.apicoches.controllers.AirConditionerController;
+import es.sergiomendez.apicoches.controllers.BatteryController;
 import es.sergiomendez.apicoches.entities.airconditioners.AirConditioner;
-import es.sergiomendez.apicoches.entities.airconditioners.HVAC;
-import es.sergiomendez.apicoches.entities.engines.CombustionEngine;
-import es.sergiomendez.apicoches.entities.engines.ElectricEngine;
+import es.sergiomendez.apicoches.entities.batteries.Battery;
 import es.sergiomendez.apicoches.entities.engines.Engine;
-import es.sergiomendez.apicoches.facades.EngineFacade;
-import es.sergiomendez.apicoches.factories.AirConditionerFactory;
+import es.sergiomendez.apicoches.facades.AirConditionerFacade;
+import es.sergiomendez.apicoches.facades.BatteryFacade;
+import es.sergiomendez.apicoches.controllers.EngineController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 @SpringBootApplication
 public class ApiCochesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ApiCochesApplication.class, args);
+		ApplicationContext context = SpringApplication.run(ApiCochesApplication.class, args);
 
-		EngineFacade engineFacade = new EngineFacade();
+		EngineController engineController = context.getBean(EngineController.class);
+		BatteryController batteryController = context.getBean(BatteryController.class);
+		AirConditionerController airConditionerController = context.getBean(AirConditionerController.class);
 
-		Engine electricEngine = null;
-		Engine combustionEngine = null;
-		Engine combustionEngine2 = null;
+		// Creación de Motores
+		ArrayList<Engine> engines = engineController.createEngines("electrico", "combustion", "feo");
 
-		try {
-			 electricEngine = engineFacade.createEngine("electrico");
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
+		// Creación de Aires Acondicionados
+		ArrayList<AirConditioner> airConditioners = airConditionerController.createAirConditioners("estandar",
+				"climatizador", "patata");
 
-		try {
-			 combustionEngine = engineFacade.createEngine("combustion");
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
+		// Creación de Baterías
+		ArrayList<Battery> batteries = batteryController.createBatteries("normal", "motriz", "azul");
 
-		try {
-			combustionEngine2 = engineFacade.createEngine("feo");
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
-
-
-
-		AirConditionerFactory airConditionerFactory = new AirConditionerFactory("estandar");
-		AirConditioner airConditioner= airConditionerFactory.getAirConditioner();
-		airConditionerFactory = new AirConditionerFactory("climatizador");
-		HVAC hvac = (HVAC) airConditionerFactory.getAirConditioner();
+		// Muestra Motores, Aires Acondicionados y Baterías creadas.
 
 		System.out.println("""
 
 				Motores
 				---------------------""");
-		System.out.println(electricEngine);
-		System.out.println(combustionEngine);
-		System.out.println(combustionEngine2);
+		for (Engine engine : engines) {
+			System.out.println(engine);
+		}
 		System.out.println("""
 
 				Aires Acondicionados
 				---------------------""");
-		System.out.println(airConditioner);
-		System.out.println(hvac);
+		for (AirConditioner airConditioner : airConditioners) {
+			System.out.println(airConditioner);
+		}
+		System.out.println("""
+
+				Baterías
+				---------------------""");
+		for (Battery battery : batteries) {
+			System.out.println(battery);
+		}
+
+
 	}
 }

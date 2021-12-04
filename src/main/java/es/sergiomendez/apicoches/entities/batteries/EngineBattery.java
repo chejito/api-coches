@@ -39,4 +39,17 @@ public class EngineBattery extends Battery {
     public void setChargeCycles(Integer chargeCycles) {
         this.chargeCycles = chargeCycles;
     }
+
+    @Override
+    public String toString() {
+        return "EngineBattery{" +
+                "name='" + name + '\'' +
+                ", volts=" + volts +
+                ", ah=" + ah +
+                ", isStartStopCompatible=" + isStartStopCompatible +
+                ", reach=" + reach +
+                ", type='" + type + '\'' +
+                ", chargeCycles=" + chargeCycles +
+                '}';
+    }
 }

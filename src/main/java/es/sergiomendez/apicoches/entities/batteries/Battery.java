@@ -6,15 +6,19 @@ public class Battery {
     protected Integer volts;
     protected Integer ah;
     protected Boolean isStartStopCompatible;
-    protected Boolean isOn = false;
+    protected Boolean isOn;
 
-    public Battery() {}
+    public Battery() {
+        this.isOn = false;
+    }
+
 
     public Battery(String name, Integer volts, Integer ah, Boolean isStartStopCompatible) {
         this.name = name;
         this.volts = volts;
         this.ah = ah;
         this.isStartStopCompatible = isStartStopCompatible;
+        this.isOn = false;
     }
 
     public void start() {
@@ -67,5 +71,15 @@ public class Battery {
 
     public void setOn(Boolean on) {
         isOn = on;
+    }
+
+    @Override
+    public String toString() {
+        return "Battery{" +
+                "name='" + name + '\'' +
+                ", volts=" + volts +
+                ", ah=" + ah +
+                ", isStartStopCompatible=" + isStartStopCompatible +
+                '}';
     }
 }

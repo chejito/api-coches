@@ -2,12 +2,15 @@ package es.sergiomendez.apicoches.entities.airconditioners;
 
 public class HVAC extends AirConditioner {
 
-    private Boolean isHeating = false;
+    private Boolean isHeating;
 
-    public HVAC() {}
+    public HVAC() {
+        this.isHeating = false;
+    }
 
     public HVAC(String name, Integer power) {
         super(name, power);
+        this.isHeating = false;
     }
 
     public void switchMode() {

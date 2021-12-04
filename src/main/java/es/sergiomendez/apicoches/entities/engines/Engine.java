@@ -5,13 +5,16 @@ public abstract class Engine {
 
     protected String name;
     protected Integer hp;
-    protected Boolean isOn = false;
+    protected Boolean isOn;
 
-    public Engine() {}
+    public Engine() {
+        this.isOn = false;
+    }
 
     public Engine(String name, Integer hp) {
         this.name = name;
         this.hp = hp;
+        this.isOn = false;
     }
 
     public void start() {
