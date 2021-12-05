@@ -1,8 +1,12 @@
-package es.sergiomendez.apicoches.dtos;
+package es.sergiomendez.apicoches.payload;
 
-public class ErrorResponse {
+public class MessageResponse {
 
     private String message;
+
+    public MessageResponse(String message) {
+        this.message = message;
+    }
 
     public String getMessage() {
         return message;

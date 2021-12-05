@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class CarFacade {
 
     @Autowired
-    CarFactory factory;
+    private CarFactory factory;
 
     public Car createCar(String type) throws EngineTypeNotFoundException, CarTypeNotFoundException,
             AirConditionerTypeNotFoundException, BatteryTypeNotFoundException {

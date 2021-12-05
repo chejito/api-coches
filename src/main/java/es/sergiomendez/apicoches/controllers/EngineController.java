@@ -1,32 +1,26 @@
 package es.sergiomendez.apicoches.controllers;
 
-import es.sergiomendez.apicoches.entities.engines.Engine;
-import es.sergiomendez.apicoches.services.engines.EngineFacade;
+import es.sergiomendez.apicoches.dtos.EngineDto;
+import es.sergiomendez.apicoches.services.engines.EngineService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-
-@Component
+@RestController
+@RequestMapping("/api/engines")
 public class EngineController {
 
     @Autowired
-    EngineFacade engineFacade;
+    private EngineService service;
 
-    static ArrayList<Engine> engines = new ArrayList<>();
+    @GetMapping("/type/{type}")
+    public ResponseEntity<?> getEngineByType(@PathVariable("type") String type) {
+            return service.createEngine(type);
+    }
 
-
-    public ArrayList<Engine> createEngines(String...tipos) {
-        for (String tipo : tipos) {
-            try {
-                Engine engine = engineFacade.createEngine(tipo);
-                engines.add(engine);
-            } catch(Exception e) {
-                System.err.println(e.getMessage());
-            }
-        }
-
-        return engines;
+    @PostMapping("/")
+    public ResponseEntity<?> createEngine(@Autowired EngineDto engineDto) {
+        return service.createEngine(engineDto);
     }
 
 }

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class CarServiceImpl implements CarService {
 
     @Autowired
-    CarFacade facade;
+    private CarFacade facade;
 
     public ArrayList<Car> createCars(String...types) throws CarTypeNotFoundException, EngineTypeNotFoundException, AirConditionerTypeNotFoundException, BatteryTypeNotFoundException {
         ArrayList<Car> cars = new ArrayList<>();
@@ -33,8 +33,4 @@ public class CarServiceImpl implements CarService {
 
         return car;
     }
-
-
-
-
 }

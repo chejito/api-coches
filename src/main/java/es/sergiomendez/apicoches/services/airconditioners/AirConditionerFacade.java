@@ -3,7 +3,6 @@ package es.sergiomendez.apicoches.services.airconditioners;
 import es.sergiomendez.apicoches.entities.airconditioners.AirConditioner;
 import es.sergiomendez.apicoches.exceptions.AirConditionerTypeNotFoundException;
 import es.sergiomendez.apicoches.exceptions.NullAirConditionerException;
-import es.sergiomendez.apicoches.services.airconditioners.AirConditionerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class AirConditionerFacade {
 
     @Autowired
-    AirConditionerFactory factory;
+    private AirConditionerFactory factory;
 
     public AirConditioner createAirConditioner(String type) throws AirConditionerTypeNotFoundException {
         factory = new AirConditionerFactory(type);

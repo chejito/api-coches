@@ -12,16 +12,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class CarFactory {
 
-    BatteryFacade batteryFacade = new BatteryFacade();
-    EngineFacade engineFacade = new EngineFacade();
-    AirConditionerFacade airConditionerFacade = new AirConditionerFacade();
-
     private Car car;
 
     private CarFactory() {}
 
     public CarFactory(String type) throws CarTypeNotFoundException, BatteryTypeNotFoundException,
             EngineTypeNotFoundException, AirConditionerTypeNotFoundException {
+
+        BatteryFacade batteryFacade = new BatteryFacade();
+        EngineFacade engineFacade = new EngineFacade();
+        AirConditionerFacade airConditionerFacade = new AirConditionerFacade();
 
         switch (type) {
             case "electric", "eléctrico", "electrico" -> this.car = new ElectricCarBuilder("Coche eléctrico por defecto")
@@ -32,7 +32,7 @@ public class CarFactory {
                     .addAirConditioner(airConditionerFacade.createAirConditioner("estandar"))
                     .addEngineBattery((EngineBattery) batteryFacade.createBattery("motriz"))
                     .build();
-            case "combustion", "combustión" -> this.car = new CombustionCarBuilder("Coche de combustión por defecto")
+            case "combustion", "combustión", "gasolina" -> this.car = new CombustionCarBuilder("Coche de combustión por defecto")
                     .addColor("Rojo metalizado")
                     .addDoors(5)
                     .addBattery(batteryFacade.createBattery("arranque"))
@@ -40,11 +40,12 @@ public class CarFactory {
                     .addAirConditioner(airConditionerFacade.createAirConditioner("estandar"))
                     .addGasTank("Tanque de 55L de aluminio")
                     .build();
-            case "hibrido", "híbrido", "hybrid" -> this.car = new HybridCarBuilder("Coche de combustión por defecto")
+            case "hibrido", "híbrido", "hybrid" -> this.car = new HybridCarBuilder("Coche híbrido por defecto")
                     .addColor("Rojo metalizado")
                     .addDoors(5)
                     .addBattery(batteryFacade.createBattery("arranque"))
                     .addEngine(engineFacade.createEngine("combustion"))
+                    .addElectricEngine((ElectricEngine) engineFacade.createEngine("electrico"))
                     .addAirConditioner(airConditionerFacade.createAirConditioner("estandar"))
                     .addGasTank("Tanque de 55L de aluminio")
                     .addElectricEngine((ElectricEngine) engineFacade.createEngine("electrico"))

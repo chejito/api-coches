@@ -1,8 +1,8 @@
-package es.sergiomendez.apicoches.dtos;
+package es.sergiomendez.apicoches.payload;
 
 import es.sergiomendez.apicoches.entities.cars.Car;
 
-public class CarDto {
+public class CarResponse {
     private String message;
     private Car car;
 

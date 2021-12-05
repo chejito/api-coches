@@ -2,7 +2,6 @@ package es.sergiomendez.apicoches.services.engines;
 
 import es.sergiomendez.apicoches.entities.engines.Engine;
 import es.sergiomendez.apicoches.exceptions.EngineTypeNotFoundException;
-import es.sergiomendez.apicoches.exceptions.NullEngineException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,15 +9,11 @@ import org.springframework.stereotype.Component;
 public class EngineFacade {
 
     @Autowired
-    EngineFactory factory;
+    private EngineFactory factory;
 
     public Engine createEngine(String type) throws EngineTypeNotFoundException {
         factory = new EngineFactory(type);
         return factory.getEngine();
     }
 
-    public Engine createEngine(Engine engine) throws NullEngineException {
-        factory = new EngineFactory(engine);
-        return factory.getEngine();
-    }
 }

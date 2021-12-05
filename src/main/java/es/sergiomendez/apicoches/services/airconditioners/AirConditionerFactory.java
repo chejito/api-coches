@@ -17,7 +17,7 @@ public class AirConditionerFactory {
 
     public AirConditionerFactory(String type) throws AirConditionerTypeNotFoundException {
         switch (type) {
-            case "estandar", "estándar", "standard" -> this.airConditioner = new AirConditionerBuilder("Aire Acondicionado por defecto")
+            case "estandar", "estándar", "standard", "normal" -> this.airConditioner = new AirConditionerBuilder("Aire Acondicionado por defecto")
                     .addPower(2000)
                     .build();
             case "climatizador", "hvac" -> this.airConditioner = new HVACBuilder("Climatizador por defecto")

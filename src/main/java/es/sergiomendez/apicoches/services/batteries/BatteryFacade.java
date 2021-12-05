@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class BatteryFacade {
 
     @Autowired
-    BatteryFactory factory;
+    private BatteryFactory factory;
 
     public Battery createBattery(String type) throws BatteryTypeNotFoundException {
         factory = new BatteryFactory(type);
