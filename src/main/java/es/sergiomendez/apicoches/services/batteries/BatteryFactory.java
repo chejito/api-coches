@@ -1,4 +1,4 @@
-package es.sergiomendez.apicoches.factories;
+package es.sergiomendez.apicoches.services.batteries;
 
 import es.sergiomendez.apicoches.entities.batteries.Battery;
 import es.sergiomendez.apicoches.entities.batteries.BatteryBuilder;

@@ -1,12 +1,12 @@
-package es.sergiomendez.apicoches.factories;
+package es.sergiomendez.apicoches.services.cars;
 
 import es.sergiomendez.apicoches.entities.batteries.EngineBattery;
 import es.sergiomendez.apicoches.entities.cars.*;
 import es.sergiomendez.apicoches.entities.engines.ElectricEngine;
 import es.sergiomendez.apicoches.exceptions.*;
-import es.sergiomendez.apicoches.facades.AirConditionerFacade;
-import es.sergiomendez.apicoches.facades.BatteryFacade;
-import es.sergiomendez.apicoches.facades.EngineFacade;
+import es.sergiomendez.apicoches.services.airconditioners.AirConditionerFacade;
+import es.sergiomendez.apicoches.services.batteries.BatteryFacade;
+import es.sergiomendez.apicoches.services.engines.EngineFacade;
 import org.springframework.stereotype.Component;
 
 @Component

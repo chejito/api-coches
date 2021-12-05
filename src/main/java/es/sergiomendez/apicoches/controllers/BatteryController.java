@@ -1,8 +1,7 @@
 package es.sergiomendez.apicoches.controllers;
 
 import es.sergiomendez.apicoches.entities.batteries.Battery;
-import es.sergiomendez.apicoches.entities.engines.Engine;
-import es.sergiomendez.apicoches.facades.BatteryFacade;
+import es.sergiomendez.apicoches.services.batteries.BatteryFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

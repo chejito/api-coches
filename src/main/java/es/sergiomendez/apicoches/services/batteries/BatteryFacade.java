@@ -1,9 +1,8 @@
-package es.sergiomendez.apicoches.facades;
+package es.sergiomendez.apicoches.services.batteries;
 
 import es.sergiomendez.apicoches.entities.batteries.Battery;
 import es.sergiomendez.apicoches.exceptions.BatteryTypeNotFoundException;
 import es.sergiomendez.apicoches.exceptions.NullBatteryException;
-import es.sergiomendez.apicoches.factories.BatteryFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
