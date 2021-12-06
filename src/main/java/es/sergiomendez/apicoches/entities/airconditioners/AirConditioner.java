@@ -1,5 +1,13 @@
 package es.sergiomendez.apicoches.entities.airconditioners;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = AirConditioner.class, name = "estandar"),
+        @JsonSubTypes.Type(value = HVAC.class, name = "climatizador")
+})
 public class AirConditioner {
 
     protected String name;

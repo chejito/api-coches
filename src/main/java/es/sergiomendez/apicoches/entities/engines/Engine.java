@@ -1,6 +1,13 @@
 package es.sergiomendez.apicoches.entities.engines;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = ElectricEngine.class, name = "electrico"),
+        @JsonSubTypes.Type(value = CombustionEngine.class, name = "combustion")
+})
 public abstract class Engine {
 
     protected String name;

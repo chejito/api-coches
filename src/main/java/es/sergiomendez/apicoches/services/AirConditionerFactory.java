@@ -1,4 +1,4 @@
-package es.sergiomendez.apicoches.services.airconditioners;
+package es.sergiomendez.apicoches.services;
 
 import es.sergiomendez.apicoches.entities.airconditioners.AirConditioner;
 import es.sergiomendez.apicoches.entities.airconditioners.AirConditionerBuilder;

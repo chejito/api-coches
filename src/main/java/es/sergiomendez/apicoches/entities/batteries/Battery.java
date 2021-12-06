@@ -1,5 +1,13 @@
 package es.sergiomendez.apicoches.entities.batteries;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Battery.class, name = "arranque"),
+        @JsonSubTypes.Type(value = EngineBattery.class, name = "motriz")
+})
 public class Battery {
 
     protected String name;

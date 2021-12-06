@@ -1,10 +1,9 @@
-package es.sergiomendez.apicoches.services.batteries;
+package es.sergiomendez.apicoches.services;
 
 import es.sergiomendez.apicoches.entities.batteries.Battery;
 import es.sergiomendez.apicoches.entities.batteries.BatteryBuilder;
 import es.sergiomendez.apicoches.entities.batteries.EngineBattery;
 import es.sergiomendez.apicoches.entities.batteries.EngineBatteryBuilder;
-import es.sergiomendez.apicoches.exceptions.BatteryNotFoundException;
 import es.sergiomendez.apicoches.exceptions.BatteryTypeNotFoundException;
 import es.sergiomendez.apicoches.exceptions.NullBatteryException;
 import org.springframework.stereotype.Component;
@@ -18,12 +17,12 @@ public class BatteryFactory {
 
     public BatteryFactory(String type) throws BatteryTypeNotFoundException {
         switch (type) {
-            case "arranque", "normal" -> this.battery = new BatteryBuilder("Batería de arranque por defecto")
+            case "arranque", "normal" -> battery = new BatteryBuilder("Batería de arranque por defecto")
                     .addVolts(12)
                     .addAh(5000)
                     .addStartStop(true)
                     .build();
-            case "motriz", "motora" -> this.battery = new EngineBatteryBuilder("Batería para motor eléctrico por defecto")
+            case "motriz", "motora" -> battery = new EngineBatteryBuilder("Batería para motor eléctrico por defecto")
                     .addVolts(12)
                     .addAh(50000)
                     .addStartStop(true)
@@ -37,7 +36,7 @@ public class BatteryFactory {
 
     public BatteryFactory(Battery newBattery) throws NullBatteryException {
         if (newBattery instanceof EngineBattery) {
-            this.battery = new EngineBatteryBuilder(newBattery.getName())
+            battery = new EngineBatteryBuilder(newBattery.getName())
                     .addVolts(newBattery.getVolts())
                     .addAh(newBattery.getAh())
                     .addStartStop(newBattery.getStartStopCompatible())
@@ -46,7 +45,7 @@ public class BatteryFactory {
                     .addChargeCycles(((EngineBattery) newBattery).getChargeCycles())
                     .build();
         } else if (newBattery != null) {
-            this.battery = new BatteryBuilder(newBattery.getName())
+            battery = new BatteryBuilder(newBattery.getName())
                     .addVolts(newBattery.getVolts())
                     .addAh(newBattery.getAh())
                     .addStartStop(newBattery.getStartStopCompatible())
@@ -58,6 +57,6 @@ public class BatteryFactory {
     }
 
     public Battery getBattery() {
-        return this.battery;
+        return battery;
     }
 }
