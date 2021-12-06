@@ -13,7 +13,7 @@ public class CarController {
     @Autowired
     private CarService service;
 
-    @GetMapping("/type/{type}")
+    @GetMapping("/create/{type}")
     public ResponseEntity<?> getCarByType(@PathVariable("type") String type) {
             return service.createCar(type);
     }
@@ -23,10 +23,10 @@ public class CarController {
         return service.getAllCars();
     }
 
-    @GetMapping("/{name}")
-    public ResponseEntity<?> getCarsByName(@PathVariable("name") String name) {
-        return service.getCarByName(name);
-    }
+//    @GetMapping("/")
+//    public ResponseEntity<?> getCar(@RequestBody CarDto carDto) {
+//        return service.getCar(carDto);
+//    }
 
     @PostMapping("/")
     public ResponseEntity<?> createCar(@RequestBody CarDto carDto) {
@@ -46,6 +46,26 @@ public class CarController {
     @DeleteMapping("/{name}")
     public ResponseEntity<?> deleteCarByName(@PathVariable("name") String name) {
         return service.deleteCarByName(name);
+    }
+
+    @GetMapping("/color/{color}")
+    public ResponseEntity<?> getCarsByColor(@PathVariable("color") String color) {
+        return service.getCarsByColor(color);
+    }
+
+    @GetMapping("/doors/{doors}")
+    public ResponseEntity<?> getCarsByDoors(@PathVariable("doors") Integer doors) {
+        return service.getCarsByDoors(doors);
+    }
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<?> getCarByName(@PathVariable("name") String name) {
+        return service.getCarByName(name);
+    }
+
+    @GetMapping("/type/{type}")
+    public ResponseEntity<?> getCarsByType(@PathVariable("type") String type) {
+        return service.getCarsByType(type);
     }
 
 }

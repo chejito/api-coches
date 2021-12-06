@@ -1,12 +1,17 @@
 package es.sergiomendez.apicoches.repositories;
 
 import es.sergiomendez.apicoches.entities.cars.Car;
+import es.sergiomendez.apicoches.entities.cars.CombustionCar;
+import es.sergiomendez.apicoches.entities.cars.ElectricCar;
+import es.sergiomendez.apicoches.entities.cars.HybridCar;
 import es.sergiomendez.apicoches.exceptions.CarAlreadyExistsException;
 import es.sergiomendez.apicoches.exceptions.CarNotFoundException;
+import es.sergiomendez.apicoches.exceptions.CarTypeNotFoundException;
 import es.sergiomendez.apicoches.exceptions.NoCarsException;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 @Repository
 public class CarRepository {
@@ -17,20 +22,7 @@ public class CarRepository {
         return cars;
     }
 
-    public Car getCarByName(String name) throws CarNotFoundException {
-        Car result = null;
-        for(Car car : cars) {
-            if (car.getName().equalsIgnoreCase(name)) {
-                result = car;
-            }
-        }
 
-        if (result == null) {
-            throw new CarNotFoundException();
-        } else {
-            return result;
-        }
-    }
 
     public void updateCar(Car oldCar, Car newCar) throws CarNotFoundException {
         int index = -1;
@@ -76,6 +68,83 @@ public class CarRepository {
         cars.clear();
     }
 
+    public Car getCarByName(String name) throws CarNotFoundException {
+        Car result = null;
+        for(Car car : cars) {
+            if (car.getName().equalsIgnoreCase(name)) {
+                result = car;
+            }
+        }
+
+        if (result == null) {
+            throw new CarNotFoundException();
+        } else {
+            return result;
+        }
+    }
+
+    public ArrayList<Car> getCarsByColor(String color) throws NoCarsException {
+        ArrayList<Car> carsByColor = new ArrayList<>();
+        for (Car car : cars) {
+            if (car.getColor().equalsIgnoreCase(color)) {
+                carsByColor.add(car);
+            }
+        }
+
+        if (carsByColor.isEmpty()) {
+            throw new NoCarsException();
+        }
+
+        return carsByColor;
+    }
+
+    public ArrayList<Car> getCarsByDoors(Integer doors) throws NoCarsException {
+        ArrayList<Car> carsByDoors = new ArrayList<>();
+        for (Car car : cars) {
+            if (Objects.equals(car.getDoors(), doors)) {
+                carsByDoors.add(car);
+            }
+        }
+
+        if (carsByDoors.isEmpty()) {
+            throw new NoCarsException();
+        }
+
+        return carsByDoors;
+    }
+
+    public ArrayList<Car> getCarsByType(String type) throws NoCarsException, CarTypeNotFoundException {
+        ArrayList<Car> carsByType = new ArrayList<>();
+        for (Car car : cars) {
+            switch (type){
+                case ("electrico"):
+                    if (car instanceof ElectricCar) {
+                        carsByType.add(car);
+                    }
+                    break;
+
+                case ("combustion"):
+                    if (car instanceof CombustionCar && !(car instanceof HybridCar)) {
+                        carsByType.add(car);
+                    }
+                    break;
+
+                case ("hibrido"):
+                    if (car instanceof HybridCar) {
+                        carsByType.add(car);
+                    }
+
+                default:
+                    throw new CarTypeNotFoundException(type);
+            }
+        }
+
+        if (carsByType.isEmpty()) {
+            throw new NoCarsException();
+        }
+
+        return carsByType;
+    }
 
 
 

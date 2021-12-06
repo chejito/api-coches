@@ -2,6 +2,6 @@ package es.sergiomendez.apicoches.exceptions;
 
 public class NoCarsException extends Exception {
     public NoCarsException() {
-        super("Error al borrar Coches: No existe ninguno");
+        super("Error al buscar Coches: No existe ninguno");
     }
 }

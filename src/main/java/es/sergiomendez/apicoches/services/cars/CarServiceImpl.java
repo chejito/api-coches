@@ -33,23 +33,6 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public ResponseEntity<?> getCarByName(String name) {
-
-        try {
-            Car car = repository.getCarByName(name);
-            String message = "Coche encontrado: " + car.getName();
-            log.warn(message);
-
-            return ResponseEntity.ok(new CarResponse(message, car));
-
-        } catch (CarNotFoundException e) {
-            log.warn(e.getMessage());
-
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @Override
     public ResponseEntity<?> createCar(String type) {
         try {
             Car car = new CarFactory(type).getStartedCar();
@@ -141,5 +124,76 @@ public class CarServiceImpl implements CarService {
                     .body(new MessageResponse(e.getMessage()));
         }
 
+    }
+
+    @Override
+    public ResponseEntity<?> getCarByName(String name) {
+
+        try {
+            Car car = repository.getCarByName(name);
+            String message = "Coche encontrado: " + car.getName();
+            log.warn(message);
+
+            return ResponseEntity.ok(new CarResponse(message, car));
+
+        } catch (CarNotFoundException e) {
+            log.warn(e.getMessage());
+
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @Override
+    public ResponseEntity<?> getCarsByColor(String color) {
+        try {
+            ArrayList<Car> cars = repository.getCarsByColor(color);
+            String message = "Coches encontrados con el color: " + color;
+            log.warn(message);
+
+            return ResponseEntity.ok(new CarListResponse(message, cars));
+
+        } catch (NoCarsException e) {
+            log.warn(e.getMessage());
+
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse(e.getMessage()));
+        }
+    }
+
+    @Override
+    public ResponseEntity<?> getCarsByDoors(Integer doors) {
+        try {
+            ArrayList<Car> cars = repository.getCarsByDoors(doors);
+            String message = "Coches encontrados con " + doors + " puertas";
+            log.warn(message);
+
+            return ResponseEntity.ok(new CarListResponse(message, cars));
+
+        } catch (NoCarsException e) {
+            log.warn(e.getMessage());
+
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse(e.getMessage()));
+        }
+    }
+
+    @Override
+    public ResponseEntity<?> getCarsByType(String type) {
+        try {
+            ArrayList<Car> cars = repository.getCarsByType(type);
+            String message = "Coches encontrados con " + type + " puertas";
+            log.warn(message);
+
+            return ResponseEntity.ok(new CarListResponse(message, cars));
+
+        } catch (Exception e) {
+            log.warn(e.getMessage());
+
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse(e.getMessage()));
+        }
     }
 }
