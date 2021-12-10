@@ -37,15 +37,23 @@ public class CarServiceImpl implements CarService {
         try {
             Car car = new CarFactory(type).getStartedCar();
             String message = "Coche de tipo '" + type + "' genérico creado";
+            repository.saveCar(car);
             log.warn(message);
 
             return ResponseEntity.ok(new CarResponse(message, car));
 
+        } catch (CarAlreadyExistsException e) {
+            log.warn(e.getMessage());
+
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse(e.getMessage()));
         } catch (Exception e) {
             log.warn(e.getMessage());
 
             return ResponseEntity.notFound().build();
-        }   
+        }
+
     }
 
     @Override
@@ -183,7 +191,7 @@ public class CarServiceImpl implements CarService {
     public ResponseEntity<?> getCarsByType(String type) {
         try {
             ArrayList<Car> cars = repository.getCarsByType(type);
-            String message = "Coches encontrados con " + type + " puertas";
+            String message = "Coches encontrados de tipo " + type;
             log.warn(message);
 
             return ResponseEntity.ok(new CarListResponse(message, cars));

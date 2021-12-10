@@ -133,6 +133,7 @@ public class CarRepository {
                     if (car instanceof HybridCar) {
                         carsByType.add(car);
                     }
+                    break;
 
                 default:
                     throw new CarTypeNotFoundException(type);
