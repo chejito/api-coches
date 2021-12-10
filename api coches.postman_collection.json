@@ -1,0 +1,221 @@
+{
+	"info": {
+		"_postman_id": "3ac08a16-db66-4ade-8346-42e695b68e45",
+		"name": "api coches",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/api/cars/create/{type}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/cars/create/hibrido",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"cars",
+						"create",
+						"hibrido"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/cars/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n     \"type\": \"combustion\",\n    \"name\": \"Coche de combustión 6\",\n    \"color\": \"Verde esmeralda\",\n    \"doors\": 3,\n    \"battery\": {\n         \"type\": \"arranque\",\n        \"name\": \"Batería de arranque 1\",\n        \"volts\": 12,\n        \"ah\": 5000,\n        \"startStopCompatible\": false\n    },\n    \"engine\": {\n         \"type\": \"combustion\",\n        \"name\": \"Motor de combustión1\",\n        \"hp\": 105,\n        \"fuelType\": \"diesel\",\n        \"cc\": 1600\n    },\n    \"airConditioner\": {\n         \"type\": \"estandar\",\n        \"name\": \"Aire Acondicionado1\",\n        \"power\": 2500\n    },\n    \"gasTank\": \"Tanque de 60L de fibra de carbono\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/cars/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"cars",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/cars/",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n     \"type\": \"combustion\",\n    \"name\": \"Coche de combustión 1\",\n    \"color\": \"Rojo pomelo\",\n    \"doors\": 3,\n    \"battery\": {\n         \"type\": \"arranque\",\n        \"name\": \"Batería de arranque 1\",\n        \"volts\": 12,\n        \"ah\": 5000,\n        \"startStopCompatible\": false\n    },\n    \"engine\": {\n         \"type\": \"combustion\",\n        \"name\": \"Motor de combustión1\",\n        \"hp\": 105,\n        \"fuelType\": \"gasolina\",\n        \"cc\": 1600\n    },\n    \"airConditioner\": {\n         \"type\": \"estandar\",\n        \"name\": \"Aire Acondicionado1\",\n        \"power\": 2500\n    },\n    \"gasTank\": \"Tanque de 60L de fibra de carbono\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/cars/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"cars",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/cars/",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n     \"type\": \"combustion\",\n    \"name\": \"Coche de combustión 1\",\n    \"color\": \"Rojo pomelo\",\n    \"doors\": 3,\n    \"battery\": {\n         \"type\": \"arranque\",\n        \"name\": \"Batería de arranque 1\",\n        \"volts\": 12,\n        \"ah\": 5000,\n        \"startStopCompatible\": false\n    },\n    \"engine\": {\n         \"type\": \"combustion\",\n        \"name\": \"Motor de combustión1\",\n        \"hp\": 105,\n        \"fuelType\": \"diesel\",\n        \"cc\": 1600\n    },\n    \"airConditioner\": {\n         \"type\": \"estandar\",\n        \"name\": \"Aire Acondicionado1\",\n        \"power\": 2500\n    },\n    \"gasTank\": \"Tanque de 60L de fibra de carbono\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/cars/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"cars",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/cars/name/{name}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/cars/name/Coche híbrido por defecto",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"cars",
+						"name",
+						"Coche híbrido por defecto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/cars/color/{color}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/cars/color/rojo metalizado",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"cars",
+						"color",
+						"rojo metalizado"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/cars/doors/{doors}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/cars/doors/5",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"cars",
+						"doors",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/cars/type/{type}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/cars/type/hibrido",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"cars",
+						"type",
+						"hibrido"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/cars/{name}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/cars/Coche de combustión 1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"cars",
+						"Coche de combustión 1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/cars/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/cars/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"cars",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
