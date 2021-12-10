@@ -1,93 +1,80 @@
 package es.sergiomendez.apicoches.entities.cars;
 
-import javax.persistence.*;
+import es.sergiomendez.apicoches.entities.airconditioners.AirConditioner;
+import es.sergiomendez.apicoches.entities.batteries.Battery;
+import es.sergiomendez.apicoches.entities.engines.Engine;
 
-@MappedSuperclass
 public abstract class Car {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-
-    @Column
-    String name;
-
-    @Column
-    String brand;
-
-    @Column
-    String model;
-
-    @Column
-    String color;
-
-    @Column
-    Integer doors;
-
-    @Column
-    String battery;
-
-    @Column
-    String engine;
-
-    @Column
-    String airConditioner;
-
-    @Column
-    Boolean engineOn;
-
-    @Column
-    Boolean batteryOn;
-
-    @Column
-    Boolean airConditionerOn;
+    protected String name;
+    protected String color;
+    protected Integer doors;
+    protected Battery battery;
+    protected Engine engine;
+    protected AirConditioner airConditioner;
+    protected Boolean isBatteryOn;
+    protected Boolean isEngineOn;
+    protected Boolean isAirConditionerOn;
 
     public Car() {
+        this.isBatteryOn = false;
+        this.isEngineOn = false;
+        this.isAirConditionerOn = false;
     }
 
-    public Car(String brand, String model, String color, Integer doors,
-               String battery, String engine, String airConditioner) {
-        this.name = brand + " " + model;
-        this.brand = brand;
-        this.model = model;
+    public Car(String name, String color, Integer doors, Battery battery,
+               Engine engine, AirConditioner airConditioner) {
+        this.name = name;
         this.color = color;
         this.doors = doors;
         this.battery = battery;
         this.engine = engine;
         this.airConditioner = airConditioner;
-        this.engineOn = false;
-        this.batteryOn = false;
-        this.airConditionerOn = false;
+        this.isBatteryOn = false;
+        this.isEngineOn = false;
+        this.isAirConditionerOn = false;
     }
 
-    public Car(Long id, String brand, String model, String color, Integer doors,
-               String battery, String engine, String airConditioner) {
-        this.id = id;
-        this.name = brand + " " + model;
-        this.brand = brand;
-        this.model = model;
-        this.color = color;
-        this.doors = doors;
-        this.battery = battery;
-        this.engine = engine;
-        this.airConditioner = airConditioner;
-        this.batteryOn = false;
-        this.engineOn = false;
-        this.airConditionerOn = false;
+    public void startEngine() {
+        if (!engine.getOn()) {
+            engine.start();
+            setEngineOn(true);
+        }
     }
 
-    public abstract void startBattery();
-    public abstract void startEngine();
+    public void stopEngine() {
+        if (engine.getOn()) {
+            engine.stop();
+            setEngineOn(false);
+        }
+    }
+
+    public void startBattery() {
+        if (!getBatteryOn()) {
+            battery.start();
+            setBatteryOn(true);
+        }
+    }
+
+    public void stopBattery() {
+        if (getBatteryOn()) {
+            battery.stop();
+            setBatteryOn(false);
+        }
+    }
+
     public void startAirConditioner() {
-        setAirConditionerOn(true);
+        if (!getAirConditionerOn()) {
+            airConditioner.start();
+            setAirConditionerOn(true);
+        }
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void stopAirConditioner() {
+        if (getAirConditionerOn()) {
+            airConditioner.stop();
+            setAirConditionerOn(false);
+        }
     }
 
     public String getName() {
@@ -96,22 +83,6 @@ public abstract class Car {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
     }
 
     public String getColor() {
@@ -130,51 +101,51 @@ public abstract class Car {
         this.doors = doors;
     }
 
-    public String getBattery() {
+    public Battery getBattery() {
         return battery;
     }
 
-    public void setBattery(String battery) {
+    public void setBattery(Battery battery) {
         this.battery = battery;
     }
 
-    public String getEngine() {
+    public Engine getEngine() {
         return engine;
     }
 
-    public void setEngine(String engine) {
+    public void setEngine(Engine engine) {
         this.engine = engine;
     }
 
-    public String getAirConditioner() {
+    public AirConditioner getAirConditioner() {
         return airConditioner;
     }
 
-    public void setAirConditioner(String airConditioner) {
+    public void setAirConditioner(AirConditioner airConditioner) {
         this.airConditioner = airConditioner;
     }
 
-    public Boolean getEngineOn() {
-        return engineOn;
-    }
-
-    public void setEngineOn(Boolean engineOn) {
-        this.engineOn = engineOn;
-    }
-
     public Boolean getBatteryOn() {
-        return batteryOn;
+        return isBatteryOn;
     }
 
     public void setBatteryOn(Boolean batteryOn) {
-        this.batteryOn = batteryOn;
+        isBatteryOn = batteryOn;
+    }
+
+    public Boolean getEngineOn() {
+        return isEngineOn;
+    }
+
+    public void setEngineOn(Boolean engineOn) {
+        isEngineOn = engineOn;
     }
 
     public Boolean getAirConditionerOn() {
-        return airConditionerOn;
+        return isAirConditionerOn;
     }
 
     public void setAirConditionerOn(Boolean airConditionerOn) {
-        this.airConditionerOn = airConditionerOn;
+        isAirConditionerOn = airConditionerOn;
     }
 }

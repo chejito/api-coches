@@ -1,75 +1,81 @@
 package es.sergiomendez.apicoches.entities.cars;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import es.sergiomendez.apicoches.entities.airconditioners.AirConditioner;
+import es.sergiomendez.apicoches.entities.batteries.Battery;
+import es.sergiomendez.apicoches.entities.engines.ElectricEngine;
+import es.sergiomendez.apicoches.entities.engines.Engine;
 
-@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class HybridCar extends Car {
+public class HybridCar extends CombustionCar {
 
-    @Column
-    String engine2;
+    private ElectricEngine engine2;
+    private Boolean isEngine2On;
 
-    @Column
-    Boolean engine2On;
-
-    public HybridCar(String brand, String model, String color, Integer doors, String battery, String engine, String airConditioner, String engine2) {
-        super(brand, model, color, doors, battery, engine, airConditioner);
-        this.engine2 = engine2;
-        this.engine2On = false;
+    public HybridCar() {
+        this.isEngine2On = false;
     }
 
-    @Override
-    public void startBattery() {
-        if (!getBatteryOn()) {
-            setBatteryOn(true);
-        }
+    public HybridCar(String name, String color, Integer doors, Battery battery, Engine engine,
+                     AirConditioner airConditioner, String gasTank, ElectricEngine engine2) {
+        super(name, color, doors, battery, engine, airConditioner, gasTank);
+        this.engine2 = engine2;
+        this.isEngine2On = false;
     }
 
     @Override
     public void startEngine() {
-        if (!getEngineOn()) {
+        if (!engine.getOn()) {
+            engine.start();
             setEngineOn(true);
         }
         if (!getEngine2On()) {
+            engine2.start();
             setEngine2On(true);
         }
     }
 
-    public String getEngine2() {
+    @Override
+    public void stopEngine() {
+        if (engine.getOn()) {
+            engine.stop();
+            setEngineOn(false);
+        }
+        if (engine2.getOn()) {
+            engine2.stop();
+            setEngine2On(false);
+        }
+    }
+
+    public ElectricEngine getEngine2() {
         return engine2;
     }
 
-    public void setEngine2(String engine2) {
+    public void setEngine2(ElectricEngine engine2) {
         this.engine2 = engine2;
     }
 
     public Boolean getEngine2On() {
-        return engine2On;
+        return isEngine2On;
     }
 
     public void setEngine2On(Boolean engine2On) {
-        this.engine2On = engine2On;
+        isEngine2On = engine2On;
     }
 
     @Override
     public String toString() {
         return "HybridCar{" +
                 "name='" + name + '\'' +
-                ", brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
                 ", color='" + color + '\'' +
                 ", doors=" + doors +
-                ", battery='" + battery + '\'' +
-                ", engine='" + engine + '\'' +
-                ", airConditioner='" + airConditioner + '\'' +
-                ", engineOn=" + engineOn +
-                ", batteryOn=" + batteryOn +
-                ", airConditionerOn=" + airConditionerOn +
-                ", engine2='" + engine2 + '\'' +
-                ", engine2On=" + engine2On +
+                ", battery=" + battery +
+                ", engine=" + engine +
+                ", engine2=" + engine2 +
+                ", airConditioner=" + airConditioner +
+                ", isBatteryOn=" + isBatteryOn +
+                ", isEngineOn=" + isEngineOn +
+                ", isEngine2On=" + isEngine2On +
+                ", isAirConditionerOn=" + isAirConditionerOn +
+                ", isGasTankEmpty=" + isGasTankEmpty +
                 '}';
     }
 }
